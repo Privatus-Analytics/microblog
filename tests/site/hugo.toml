@@ -1,0 +1,7 @@
+baseURL = "https://example.micro.blog/"
+title = "Test blog"
+theme = ["privatus-analytics"]
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT", "404"]
+
+[params]
+plugins_html = ["privatus-analytics.html"]

@@ -1,0 +1,7 @@
+<!doctype html>
+<html><head><title>{{ .Site.Title }}</title>
+{{/* Same loop as microblog_head.html in Micro.blog's own themes. */}}
+{{ range $filename := .Site.Params.plugins_html }}
+  {{ partial $filename $ }}
+{{ end }}
+</head><body>home</body></html>

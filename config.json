@@ -1,0 +1,7 @@
+{
+  "params": {
+    "privatus_site_id": "",
+    "privatus_modules": "engage,auto,vitals,clicks,ask",
+    "privatus_exclude": ""
+  }
+}

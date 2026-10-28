@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "title": "Privatus Analytics",
+  "description": "See how many real people read your blog. No cookies, no cookie pop-up, and bots are left out. Free plan at privatusanalytics.com.",
+  "includes": [
+    "privatus-analytics.html"
+  ],
+  "fields": [
+    {
+      "field": "params.privatus_site_id",
+      "label": "Site ID",
+      "placeholder": "pa_YOURSITEID (Privatus Analytics, Site settings, Tracking)",
+      "type": "string"
+    },
+    {
+      "field": "params.privatus_modules",
+      "label": "Extra features",
+      "placeholder": "engage,auto,vitals,clicks,ask",
+      "type": "string"
+    },
+    {
+      "field": "params.privatus_exclude",
+      "label": "Pages not to count (optional)",
+      "placeholder": "/drafts/*,/private/*",
+      "type": "string"
+    }
+  ]
+}

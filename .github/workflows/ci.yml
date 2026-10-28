@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  json:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check plugin.json and config.json
+        run: |
+          jq -e '.version and .title and .description and (.includes | index("privatus-analytics.html"))' plugin.json
+          jq -e '.params.privatus_modules' config.json
+          test -f layouts/partials/privatus-analytics.html
+
+  test:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        # Micro.blog builds blogs with an older Hugo (0.91) or a newer one.
+        image:
+          - klakegg/hugo:0.91.2-alpine
+          - ghcr.io/gohugoio/hugo:v0.140.2
+          - ghcr.io/gohugoio/hugo:v0.167.0
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build the test blog and check the output
+        run: |
+          docker run --rm -e HUGO_CACHEDIR=/tmp/hugo_cache \
+            -u "$(id -u):$(id -g)" \
+            -v "$PWD:/project" --entrypoint sh \
+            ${{ matrix.image }} /project/tests/run.sh

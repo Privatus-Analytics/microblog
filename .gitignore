@@ -1,0 +1,5 @@
+tests/site/public/
+tests/site/resources/
+.hugo_build.lock
+.DS_Store
+SUBMISSION*.md

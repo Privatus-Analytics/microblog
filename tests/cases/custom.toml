@@ -1,0 +1,4 @@
+[params]
+privatus_site_id = "pa_Custom9"
+privatus_modules = "Engage, vitals\"><script>alert(1)</script>"
+privatus_exclude = "/drafts/*\" onload=\"alert(1)"

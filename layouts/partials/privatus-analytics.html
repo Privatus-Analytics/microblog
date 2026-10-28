@@ -1,0 +1,17 @@
+{{- /*
+  Privatus Analytics plug-in for Micro.blog.
+  Micro.blog puts this partial inside the <head> of every page.
+  It prints nothing until a valid site id (pa_ followed by letters and
+  numbers) is saved in the plug-in settings.
+*/ -}}
+{{- $siteId := trim (string (site.Params.privatus_site_id | default "")) " " -}}
+{{- if findRE `^pa_[A-Za-z0-9]{1,64}$` $siteId -}}
+  {{- $modules := trim (string (site.Params.privatus_modules | default "")) " " -}}
+  {{- $modules = replaceRE `[^a-z,]` "" (lower $modules) -}}
+  {{- $exclude := trim (string (site.Params.privatus_exclude | default "")) " " -}}
+  {{- $html := printf `<script defer src="https://privatusstats.com/js/pa.js" data-site="%s" data-modules="%s"` $siteId $modules -}}
+  {{- if $exclude -}}
+    {{- $html = printf `%s data-exclude="%s"` $html (htmlEscape $exclude) -}}
+  {{- end -}}
+  {{- printf "%s></script>" $html | safeHTML -}}
+{{- end -}}
